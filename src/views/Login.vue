@@ -5,7 +5,7 @@
   <el-form-item label="アカウント" prop="acco">
     <el-input type="account" v-model="ruleForm.acco" autocomplete="off"></el-input>
   </el-form-item>
-  <el-form-item label="パスポート" prop="pass">
+  <el-form-item label="パスワード" prop="pass">
     <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
   </el-form-item>
     <el-button class="btn" type="primary" @click="submitForm('ruleForm')">登録</el-button>
@@ -17,14 +17,14 @@
 <script>
 export default {
     data() {
-      var validatePass = (rule, value, callback) => {
+      var validateAcco = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('アカウントを入力してください'));
         }else{
           callback();
         }
       };
-      var validatePass2 = (rule, value, callback) => {
+      var validatePass = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('パスワードを入力してください'));
         }else{
@@ -38,10 +38,10 @@ export default {
         },
         rules: {
           acco: [
-            { validator: validatePass, trigger: 'blur' }
+            { validator: validateAcco, trigger: 'blur' }
           ],
           pass: [
-            { validator: validatePass2, trigger: 'blur' }
+            { validator: validatePass, trigger: 'blur' }
           ],
         }
       };
@@ -51,7 +51,7 @@ export default {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.$axios
-                .post('localhost:8080/users/loginUsers', this.ruleForm)
+                .post('api/users/loginUsers', this.ruleForm)
                 .then((res) => {
                     if (res.data.code == 200) {
                         this.getData(this.pageparm);
