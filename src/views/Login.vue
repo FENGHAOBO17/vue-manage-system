@@ -1,15 +1,24 @@
 <template>
+
 <div>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">ログイン</router-link>|
+      <router-link to="/register">登録</router-link>
+    </div>
+  </div>
+  <div class="lbody">
   <div class="size">
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-  <el-form-item label="アカウント" prop="acco">
-    <el-input type="account" v-model="ruleForm.acco" autocomplete="off"></el-input>
+  <el-form-item label="アカウント" prop="account">
+    <el-input type="account" v-model="ruleForm.account" autocomplete="off"></el-input>
   </el-form-item>
-  <el-form-item label="パスワード" prop="pass">
-    <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+  <el-form-item label="パスワード" prop="password">
+    <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
   </el-form-item>
     <el-button class="btn" type="primary" @click="submitForm('ruleForm')">登録</el-button>
   </el-form>
+  </div>
   </div>
 </div>
 </template>
@@ -33,14 +42,14 @@ export default {
       };
       return {
         ruleForm: {
-          acco: '',
-          pass: '',
+          account: '',
+          password: '',
         },
         rules: {
-          acco: [
+          account: [
             { validator: validateAcco, trigger: 'blur' }
           ],
-          pass: [
+          password: [
             { validator: validatePass, trigger: 'blur' }
           ],
         }
@@ -54,13 +63,15 @@ export default {
                 .post('api/users/loginUsers', this.ruleForm)
                 .then((res) => {
                     if (res.data.code == 200) {
-                        this.getData(this.pageparm);
                         this.$message({
                             type: 'success',
-                            message: 'ログイン成功'
+                            message: res.data.msg,
                         });
                         this.editFormVisible = false;
+                        // setTimeout("window.open('/cn');", 1000 )
+                        window.location.href = '/home'
                     } else {
+                      console.log(this.ruleForm)
                         this.$message({
                             type: 'info',
                             message: res.data.msg
@@ -74,10 +85,30 @@ export default {
             return false;
           }
         });
-      }
+      },
     }
   }
 </script>
 
-<style>
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
 </style>

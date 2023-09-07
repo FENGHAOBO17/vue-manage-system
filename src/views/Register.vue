@@ -1,18 +1,27 @@
 <template>
+
 <div>
+    <div id="app">
+    <div id="nav">
+      <router-link to="/">ログイン</router-link>|
+      <router-link to="/register">登録</router-link>
+    </div>
+  </div>
+  <div class="lbody">
   <div class="size">
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
-  <el-form-item label="アカウント" prop="acco">
-    <el-input type="account" v-model="ruleForm.acco" autocomplete="off"></el-input>
+  <el-form-item label="アカウント" prop="account">
+    <el-input type="account" v-model="ruleForm.account" autocomplete="off"></el-input>
   </el-form-item>
-  <el-form-item label="パスワード" prop="pass">
-    <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+  <el-form-item label="パスワード" prop="password">
+    <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
   </el-form-item>
   <el-form-item label="パスワード確認" prop="checkPass">
     <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
   </el-form-item>
     <el-button class="btn" type="primary" @click="submitForm('ruleForm')">登録</el-button>
   </el-form>
+  </div>
   </div>
 </div>
 </template>
@@ -40,7 +49,7 @@ export default {
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('パスワードをもう一度入力してください'));
-        } else if (value !== this.ruleForm.pass) {
+        } else if (value !== this.ruleForm.password) {
           callback(new Error('パスワードは一致しません'));
         } else {
           callback();
@@ -48,16 +57,18 @@ export default {
       };
       return {
         ruleForm: {
-          acco: '',
-          pass: '',
+          account: '',
+          password: '',
           checkPass:''
         },
         rules: {
-          acco: [
-            { validator: validateAcco, trigger: 'blur' }
+          account: [
+            { validator: validateAcco, trigger: 'blur' },
+            { max:16,　message:"最大16桁を超えられないでください", trigger: 'blur' }
           ],
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
+          password: [
+            { validator: validatePass, trigger: 'blur' },
+            { max:16,　message:"最大16桁を超えられないでください", trigger: 'blur' }
           ],
           checkPass:[
             { validator: validatePass2, trigger: 'blur' }
@@ -69,14 +80,13 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$axios
-                .post('localhost:8080/users/addUsers', this.ruleForm)
+            this.$axios 
+                .post('api/users/addUsers', this.ruleForm)
                 .then((res) => {
                     if (res.data.code == 200) {
-                        this.getData(this.pageparm);
                         this.$message({
                             type: 'success',
-                            message: '登録成功'
+                            message: res.data.msg
                         });
                         this.editFormVisible = false;
                     } else {
@@ -98,5 +108,25 @@ export default {
   }
 </script>
 
-<style>
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
 </style>
