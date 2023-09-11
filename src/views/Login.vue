@@ -68,8 +68,8 @@ export default {
                             message: res.data.msg,
                         });
                         this.editFormVisible = false;
-                        // setTimeout("window.open('/cn');", 1000 )
-                        window.location.href = '/home'
+                        // setTimeout("window.open('/cn');", 1000 ) 
+                          setTimeout("window.open('/#/home);", 1000 ) 
                     } else {
                       console.log(this.ruleForm)
                         this.$message({

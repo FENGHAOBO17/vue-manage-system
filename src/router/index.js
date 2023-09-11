@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/detils',
     name: 'Detils',
-    component: () => import( '../views/Detils.vue'),
+    component: () => import( '../components/Detils.vue'),
   },
 ]
 

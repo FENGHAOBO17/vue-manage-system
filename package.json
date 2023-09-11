@@ -16,7 +16,7 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.15.14",
     "mavon-editor": "^2.6.17",
-    "sass-loader": "^12.6.0",
+    "sass-loader": "10.1.1",
     "stylus-loader": "^6.2.0",
     "vue": "^2.6.11",
     "vue-amap": "^0.5.10",
@@ -39,8 +39,11 @@
     "chai": "^4.1.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.0.0"
   }
 }

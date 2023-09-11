@@ -2,15 +2,15 @@
   <div class="page-container">
     <div class="sidebar-menu toggle-others fixed">
       <div class="sidebar-menu-inner">
-        <header class="logo-env">
+        <header class="logo-env">S
           <!-- logo -->
           <div class="logo">
             <a href="javascript:void(0)" class="logo-expanded">
-              <img src="../assets/img/logo@2x.png" width="100%" alt="" />
+              <img src="../assets/images/logo@2x.png" width="100%" alt="" />
             </a>
             <a href="javascript:void(0)" class="logo-collapsed">
               <img
-                src="../assets/img/logo-collapsed@2x.png"
+                src="../assets/images/logo-collapsed@2x.png"
                 width="40"
                 alt=""
               />
@@ -47,7 +47,7 @@
           </li>
           <!-- 关于本站 -->
           <li class="submit-tag">
-            <router-link to="/about">
+            <router-link to="/detils">
               <i class="linecons-heart"></i>
               <span class="tooltip-blue">关于本站</span>
               <span class="label label-Primary pull-right hidden-collapsed"
@@ -125,12 +125,12 @@ export default {
         {
           key: "zh",
           name: "简体中文",
-          flag: "./assets/images/flags/flag-cn.png",
+          flag: "../assets/images/flags/flag-cn.png",
         },
         {
           key: "en",
           name: "English",
-          flag: "./assets/images/flags/flag-us.png",
+          flag: "../assets/images/flags/flag-us.png",
         },
       ],
     };

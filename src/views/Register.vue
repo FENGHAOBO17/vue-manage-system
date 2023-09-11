@@ -64,11 +64,11 @@ export default {
         rules: {
           account: [
             { validator: validateAcco, trigger: 'blur' },
-            { max:16,　message:"最大16桁を超えられないでください", trigger: 'blur' }
+            { max:16,message:"最大16桁を超えられないでください", trigger: 'blur' }
           ],
           password: [
             { validator: validatePass, trigger: 'blur' },
-            { max:16,　message:"最大16桁を超えられないでください", trigger: 'blur' }
+            { max:16,message:"最大16桁を超えられないでください", trigger: 'blur' }
           ],
           checkPass:[
             { validator: validatePass2, trigger: 'blur' }
