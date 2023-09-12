@@ -63,13 +63,20 @@ export default {
                 .post('api/users/loginUsers', this.ruleForm)
                 .then((res) => {
                     if (res.data.code == 200) {
+                      //登録した後に　JWTをlocalStorageに保存します
+                      localStorage.setItem('token', res.data.token);
+                      for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        const value = localStorage.getItem(key);
+                        console.log(key + ": " + value);
+                        }
                         this.$message({
                             type: 'success',
                             message: res.data.msg,
                         });
                         this.editFormVisible = false;
                         // setTimeout("window.open('/cn');", 1000 ) 
-                          setTimeout("window.open('/#/home);", 1000 ) 
+                        window.location.href = '/#/home'
                     } else {
                       console.log(this.ruleForm)
                         this.$message({

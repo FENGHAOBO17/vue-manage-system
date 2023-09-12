@@ -89,6 +89,8 @@ export default {
                             message: res.data.msg
                         });
                         this.editFormVisible = false;
+                        window.location.href = '/'
+                        
                     } else {
                         this.$message({
                             type: 'info',

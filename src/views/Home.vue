@@ -56,6 +56,10 @@
             </router-link>
           </li>
         </ul>
+        <!-- 退出登录 -->
+        <div style="text-align:center">
+            <el-button @click="logOut">LOGOUT</el-button>
+        </div>
       </div>
     </div>
 
@@ -143,6 +147,10 @@ export default {
     transName(webItem) {
       return this.lang.key === "en" ? webItem.en_name : webItem.name;
     },
+    logOut(){
+      // 清除本地存储中的 token
+      localStorage.removeItem('token');
+    }
   },
 };
 </script>
