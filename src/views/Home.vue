@@ -58,7 +58,7 @@
         </ul>
         <!-- 退出登录 -->
         <div style="text-align:center">
-            <el-button @click="logOut">LOGOUT</el-button>
+            <el-button @click="logout">LOGOUT</el-button>
         </div>
       </div>
     </div>
@@ -147,10 +147,15 @@ export default {
     transName(webItem) {
       return this.lang.key === "en" ? webItem.en_name : webItem.name;
     },
-    logOut(){
-      // 清除本地存储中的 token
+    logout() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // 存在 token，则清除
+      console.log('清除token'+localStorage.getItem('token'));
       localStorage.removeItem('token');
+      console.log('清除成功'+localStorage.getItem('token'));
     }
+  }
   },
 };
 </script>

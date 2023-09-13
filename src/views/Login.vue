@@ -64,16 +64,8 @@ export default {
                 .then((res) => {
                     if (res.data.code == 200) {
                       //登録した後に　JWTをlocalStorageに保存します
-                      localStorage.setItem('token', res.data.token);
-                      for (let i = 0; i < localStorage.length; i++) {
-                        const key = localStorage.key(i);
-                        const value = localStorage.getItem(key);
-                        console.log(key + ": " + value);
-                        }
-                        this.$message({
-                            type: 'success',
-                            message: res.data.msg,
-                        });
+                      localStorage.setItem('token', res.data.data);
+                      console.log('token:'+JSON.stringify(res.data.data));
                         this.editFormVisible = false;
                         // setTimeout("window.open('/cn');", 1000 ) 
                         window.location.href = '/#/home'
