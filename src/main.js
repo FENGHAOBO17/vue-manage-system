@@ -12,7 +12,7 @@ import './assets/css/xenon-core.css'
 import './assets/css/xenon-components.css'
 import './assets/css/xenon-skins.css'
 import './assets/css/nav.css'
- // 默认主题
+
 
 // axios.defaults.baseURL='/api'
 
@@ -27,15 +27,22 @@ new Vue({
 }).$mount('#app')
 
 axios.interceptors.request.use(function(config) {
-  // 从 localStorage 获取存储的 token
+  // 从 localStorage 获取存储的 token,account,password
   const token = localStorage.getItem('token');
-  
+  const account = localStorage.getItem('account');
+  const password = localStorage.getItem('password');
+  // 将账号和密码作为 querystring 参数传递给后端
+  config.params = {
+    account,
+    password
+  };
   // 将 token 添加到请求的 Header 中
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
   }
-  
   return config;
-}, function(error) {
+},
+
+function(error) {
   return Promise.reject(error);
 });

@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="sidebar-menu toggle-others fixed">
       <div class="sidebar-menu-inner">
-        <header class="logo-env">S
+        <header class="logo-env">
           <!-- logo -->
           <div class="logo">
             <a href="javascript:void(0)" class="logo-expanded">
@@ -47,7 +47,7 @@
           </li>
           <!-- 关于本站 -->
           <li class="submit-tag">
-            <router-link to="/detils">
+            <router-link to="/home/detils">
               <i class="linecons-heart"></i>
               <span class="tooltip-blue">关于本站</span>
               <span class="label label-Primary pull-right hidden-collapsed"
@@ -104,7 +104,7 @@
         </div>
       </div>
 
-      <Footer />
+
     </div>
   </div>
 </template>
@@ -114,6 +114,7 @@ import WebItem from "../components/WebItem.vue";
 import Footer from "../components/Footer.vue";
 import itemsData from "../assets/data.json";
 import { loadJs } from '../assets/js/app.js'
+import axios from 'axios';
 
 export default {
   name: "Index",
@@ -121,8 +122,13 @@ export default {
     WebItem,
     Footer,
   },
+  mounted() {
+    // 页面加载完成后执行的方法
+    this.getWebsites();
+  },
   data() {
     return {
+      // items: [], // 初始化为空数组
       items: itemsData,
       lang: {},
       langList: [
@@ -155,7 +161,21 @@ export default {
       localStorage.removeItem('token');
       console.log('清除成功'+localStorage.getItem('token'));
     }
-  }
+  },
+  getWebsites() {
+    console.log(this.items);
+      // 发送 HTTP 请求获取后端数据
+      axios.get('api/website/findAll')
+        .then(response => {
+          // this.items = response.data; // 将后端返回的数据赋值给 items 数组
+          this.items = response.data.data;
+          console.log(response.data.data);
+          // console.log(this.items);
+        })
+        .catch(error => {
+        console.error('Error fetching menu data:', error);
+      });
+    },
   },
 };
 </script>

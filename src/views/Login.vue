@@ -65,6 +65,8 @@ export default {
                     if (res.data.code == 200) {
                       //登録した後に　JWTをlocalStorageに保存します
                       localStorage.setItem('token', res.data.data);
+                      localStorage.setItem('account', this.ruleForm.account);
+                      localStorage.setItem('password', this.ruleForm.password);
                       console.log('token:'+JSON.stringify(res.data.data));
                         this.editFormVisible = false;
                         // setTimeout("window.open('/cn');", 1000 ) 

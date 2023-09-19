@@ -5,6 +5,8 @@ import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
+
+
 const routes = [
   {
     path: '/',
@@ -22,7 +24,7 @@ const routes = [
     component: () => import( '../views/Home.vue')
   },
   {
-    path: '/detils',
+    path: '/home/detils',
     name: 'Detils',
     component: () => import( '../components/Detils.vue'),
   },

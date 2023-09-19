@@ -66,3 +66,20 @@
     
     margin: auto;
   }
+
+  .lev1 {
+    margin-top:50px;
+    width: 100%;
+    height: 900px;
+  }
+  .lev2 {
+    width: 100%;
+    height: 30%;
+    display: flex;
+  }
+  .lev3 {
+    margin:3%;
+    width: 27%;
+    height: 100%;
+    text-align: center;
+  }
