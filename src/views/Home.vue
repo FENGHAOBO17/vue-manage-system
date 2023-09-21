@@ -47,7 +47,7 @@
           </li>
           <!-- 关于本站 -->
           <li class="submit-tag">
-            <router-link to="/home/detils">
+            <router-link to="/about">
               <i class="linecons-heart"></i>
               <span class="tooltip-blue">关于本站</span>
               <span class="label label-Primary pull-right hidden-collapsed"
@@ -160,6 +160,12 @@ export default {
       console.log('清除token'+localStorage.getItem('token'));
       localStorage.removeItem('token');
       console.log('清除成功'+localStorage.getItem('token'));
+      
+      this.$message({
+            type: 'success',
+            message: 'ログアウト成功',
+          });
+          window.location.href = '/'
     }
   },
   getWebsites() {
