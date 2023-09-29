@@ -27,10 +27,13 @@ new Vue({
 }).$mount('#app')
 
 axios.interceptors.request.use(function(config) {
+  const excludedPages = ['http://localhost:8081/#/register']; // 定义不需要 token 检测的页面路径
   // 从 localStorage 获取存储的 token,account,password
   const token = localStorage.getItem('token');
   const account = localStorage.getItem('account');
-  const password = localStorage.getItem('password');
+  const password = localStorage.getItem('password')
+  if (!excludedPages.includes(window.location.pathname)) { // 判断当前页面路径是否在排除列表中
+    console.log('window.location.pathname:'+window.location.pathname);
   // 将账号和密码作为 querystring 参数传递给后端
   config.params = {
     account,
@@ -39,6 +42,9 @@ axios.interceptors.request.use(function(config) {
   // 将 token 添加到请求的 Header 中
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
+    }else {
+    window.location.href = '/#/error'; 
+  }
   }
   return config;
 },

@@ -28,6 +28,11 @@ const routes = [
     name: 'Detils',
     component: () => import( '../components/Detils.vue'),
   },
+  {
+    path: '/error',
+    name: 'Error',
+    component: () => import( '../views/Error.vue'),
+  },
 ]
 
 const router = new VueRouter({

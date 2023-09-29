@@ -63,7 +63,6 @@ export default {
                 .post('api/users/loginUsers', this.ruleForm)
                 .then((res) => {
                     if (res.data.code == 200) {
-                      //登録した後に　JWTをlocalStorageに保存します
                       localStorage.setItem('token', res.data.data);
                       localStorage.setItem('account', this.ruleForm.account);
                       localStorage.setItem('password', this.ruleForm.password);
